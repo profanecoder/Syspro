@@ -41,10 +41,17 @@
     <title>Syspro - Login</title>
     <link href="../imagenes/icono.ico" rel="shortcut icon" >
     
-    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
-    <script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
-    <script src="../bootstrap/js/bootstrap.bundle.js"></script>
-    <link href="../css/estilo.css" rel="stylesheet">
+<!--Bootstrap (Trae Popper)-->
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+  <script src="../bootstrap/js/bootstrap.bundle.js"></script>
+<!--Jquery-->
+  <script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
+<!--Datatables-->  
+  <link rel="stylesheet" type="text/css" href="../datatables/datatables.css"/>
+  <script type="text/javascript" src="../datatables/datatables.js"></script>
+<!--Locales-->    
+  <link rel="stylesheet" href="../css/estilo.css">
+  <script type="text/javascript" src="../js/main.js"></script>
 
 </head>
 
@@ -54,7 +61,6 @@
   
     <form action="login.php" method="POST" class="form-signin">    
     
-
   <img class="mb-4" src="../imagenes/login.jpg" alt="" width="130" height="72">
 
   <h1 class="h3 mb-3 font-weight-normal">Acceso Corporativo</h1>
