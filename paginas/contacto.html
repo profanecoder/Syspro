@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Syspro - Software Empresarial</title>
+    <link href="../imagenes/icono.ico" rel="shortcut icon" >
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
+    <script src="../bootstrap/js/bootstrap.bundle.js"></script>
+    <link href="../css/estilo.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a title="Syspro Software" href="../index.html"><img src="../imagenes/menu.png" width="40" height="40"></a>
+
+  <!--Menú responsivo al reducir tamaño-->
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+
+         <ul class="navbar-nav mr-auto">
+
+           <li class="nav-item active">
+           <a class="nav-link" href="../paginas/quienessomos.html">Quienes Somos <span class="sr-only"></span></a>
+           </li>
+
+           <li class="nav-item active">
+           <a class="nav-link" href="../paginas/empleado.html">Empleados <span class="sr-only"></span></a>
+           </li>
+
+           <li class="nav-item active">
+           <a class="nav-link" href="../paginas/login.php">Empresarial <span class="sr-only"></span></a>
+           </li>
+
+           <li class="nav-item">
+           <a class="nav-link" href="../paginas/contacto.html">Contacto</a>
+           </li>
+         </ul>
+
+     <!--Formulario Busqueda-->
+    <form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+    </form>
+  </div>
+</nav>
+
+      <form id="formulario" name="formContacto" method="post" action="algo.php" >
+      <label for="nombre">Nombre:</label>
+      <input name="name" placeholder="Introduce tu hombre" class="required" /><br />
+            
+      <label for="apellidos">Apellidos:</label>
+      <input name="surname" placeholder="Tus dos apellidos" class="required" /><br />
+                    
+      <label for="empresa">Empresa:</label>
+      <input name="company" placeholder="¿Para quién trabajas?" class="required" /><br />
+        
+      <label for="departamento">Cargo/Departamento:</label>
+      <input name="department" placeholder="¿Qué función desempeñas?" /><br />
+                
+      <label for="telefono">Teléfono:</label>
+      <input name="phone" placeholder="¿Hablamos?" /><br />
+            
+      <label for="mail">E-mail*:</label>
+      <input name="mail" placeholder="Podré contestarte" class="required" /><br />
+                
+      <label id="modif01" for="comentario">Comentario:</label>
+      <textarea id="modif02" placeholder="Escribeme tu comentario aquí" name="comment"></textarea><br/>
+                                
+      <input class="botonAcceder" type="submit" id="boton" value="Enviar" />
+      <button><a href ="../index.html">Volver</a></button>
+
+      <p></p>
+
+    </form>  
+
+
+
+</body>
+
+</html>
