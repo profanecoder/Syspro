@@ -1,7 +1,7 @@
 
 
 $(document).ready(function(){
-  $('#tb-empleados').dataTable({
+  $('#tablaempresarial').dataTable({
     "bProcessing":true,
     "sAjaxSource": "../paginas/consultas/dt_empleados.php",
     "aoColumns": [
