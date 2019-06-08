@@ -62,7 +62,6 @@
     <form action="login.php" method="POST" class="form-signin">    
     
   <img class="mb-4" src="../imagenes/login.jpg" alt="" width="130" height="72">
-
   <h1 class="h3 mb-3 font-weight-normal">Acceso Corporativo</h1>
 
   <label for="nom" class="sr-only">Usuario</label>
