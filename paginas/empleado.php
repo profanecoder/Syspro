@@ -42,7 +42,7 @@
            </li>
 
            <li class="nav-item active">
-           <a class="nav-link" href="../paginas/empleado.html">Empleados <span class="sr-only"></span></a>
+           <a class="nav-link" href="../paginas/empleado.php">Empleados <span class="sr-only"></span></a>
            </li>
 
            <li class="nav-item active">
@@ -66,12 +66,14 @@
   
  <form method="POST" action="empleado.php" >
    
-      <div class="form-group" label for="cedula">Documento</label>
+      <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
       <input type="text" name="cedula" class="form-control">
       </div>
       <input type="submit" value="Consultar" class="btn btn-primary" name="btn_consultar">
-   </div>
+      <input type="submit" value="Limpiar" class="btn btn-primary" name="btn_limpiar">
+   
 </form>
+<br>
 
 <?php
 
@@ -79,22 +81,61 @@ require_once 'conexion/conexion.php';
 
 $cedula="";
 
-if(isset($_POST['btn_consultar']))
+if(isset($_POST['btn_limpiar']))
+{
+  $cedula="";
+   }
+
+    if(isset($_POST['btn_consultar']))
       {
     
     $db = new db_conexion();
     $cedula =$_POST["cedula"];
-    $sql="SELECT nombre1 FROM empleados WHERE cedula ='$cedula'";
+    $sql="SELECT * FROM empleados, seguro 
+            WHERE cedula ='$cedula'
+              GROUP BY cedula";
     $resultado=mysqli_query($db->conectar(),$sql);
       while($registro=mysqli_fetch_array($resultado)){
-         echo $registro['nombre1'];
+         
+ ?>   
+
+<table class="table table-striped table-dark">
+
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Cédula</th>
+      <th scope="col">Primer Nombre</th>
+      <th scope="col">Segundo Nombre</th>
+      <th scope="col">Primer Apellido</th>
+      <th scope="col">Segundo Apellido</th>
+      <th scope="col">Seguro</th>
+      <th scope="col">Seguridad Social</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><?php echo $registro['id']; ?></td>
+      <td><?php echo $registro['cedula']; ?></td>
+      <td><?php echo $registro['nombre1']; ?></td>
+      <td><?php echo $registro['nombre2']; ?></td>
+      <td><?php echo $registro['apellido1']; ?></td>
+      <td><?php echo $registro['apellido2']; ?></td>
+      <td><?php echo $registro['seguro']; ?></td>
+      <td><?php echo $registro['segursocial']; ?></td>
+    </tr>
+
+</table>
+
+</div> <!--Container-->
+<?php  
       };
-    }
- ?>
+    };
+?>
 
- 
-
-
+<footer class="container">
+  <p>© ADSI - 2019</p>
+</footer>
 </body>
-
 </html>
