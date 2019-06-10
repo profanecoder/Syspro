@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('#tablaempresarial').dataTable({
     "bProcessing":true,
-    "sAjaxSource": "../paginas/consultas/dt_empleados.php",
+    "sAjaxSource": "../paginas/consultas/consultaempresarial.php",
     "aoColumns": [
         {mData:'id'},
         {mData:'cedula'},

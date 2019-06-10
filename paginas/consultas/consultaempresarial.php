@@ -6,7 +6,7 @@
     $sql="SELECT * FROM empleados, seguro
               WHERE cedula=cedulaseguro";
     $resultado=mysqli_query($db->conectar(),$sql);
-      while($registro=mysqli_fetch_array($resultado)){
+    while($registro=mysqli_fetch_array($resultado)){
          $data[] = $registro;
       };
 
