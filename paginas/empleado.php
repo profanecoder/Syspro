@@ -1,6 +1,3 @@
-
-
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -62,8 +59,7 @@
   </div>
 </nav>
 
-<div class="container">
-  
+<div class="container formulario">
  <form method="POST" action="empleado.php" >
    
       <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
@@ -73,6 +69,7 @@
       <input type="submit" value="Limpiar" class="btn btn-primary" name="btn_limpiar">
    
 </form>
+</div>
 <br>
 
 <?php
@@ -87,20 +84,31 @@ if(isset($_POST['btn_limpiar']))
    }
 
     if(isset($_POST['btn_consultar']))
-      {
-    
+      {   
     $db = new db_conexion();
     $cedula =$_POST["cedula"];
+
+      if ($cedula=="") {
+        echo '
+        <div class="container formulario">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!      </strong>   El numero de Cedula es Obligatorio.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        </div>';
+        }
+        
     $sql="SELECT * FROM empleados, seguro 
             WHERE cedula ='$cedula'
               GROUP BY cedula";
     $resultado=mysqli_query($db->conectar(),$sql);
       while($registro=mysqli_fetch_array($resultado)){
-         
- ?>   
+ ?>  
 
+<div class="container">
 <table class="table table-striped table-dark">
-
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -113,7 +121,6 @@ if(isset($_POST['btn_limpiar']))
       <th scope="col">Seguridad Social</th>
     </tr>
   </thead>
-
   <tbody>
     <tr>
       <td><?php echo $registro['id']; ?></td>
@@ -130,8 +137,10 @@ if(isset($_POST['btn_limpiar']))
 
 </div> <!--Container-->
 <?php  
+        
       };
     };
+     
 ?>
 
 <footer class="container">
