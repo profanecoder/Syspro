@@ -76,33 +76,39 @@
 
 require_once 'conexion/conexion.php';
 
-$cedula="";
+$cedula="";             /* La variable inicia en blanco*/
+$cedulaexiste=0;        /*Contador por si no exite el documento*/
+
 
 if(isset($_POST['btn_limpiar']))
 {
-  $cedula="";
+  $cedula=""; /*Si se presiona El boton la variable se limpia*/
    }
 
     if(isset($_POST['btn_consultar']))
       {   
-    $db = new db_conexion();
-    $cedula =$_POST["cedula"];
+    $db = new db_conexion();     /*Abre la base de datos*/
+    $cedula =$_POST["cedula"];   /*Pide la cedula por POST*/
 
-      if ($cedula=="") {
+      if ($cedula=="") {          /*si la cedula esta en blanco informa mensaje, sino hace la consulta*/
+        $cedulaexiste++;          /*Acumula para no imprimir los 2 mensajes*/
         echo '
         <div class="container formulario">
+        <center>
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Error!</strong> El numero de Cedula es Obligatorio.
         </div>
+        </center>
         </div>';
         }
 
-    else{
+else{
+
     $sql="SELECT * FROM empleados, seguro 
             WHERE cedula ='$cedula' AND cedula=cedulaseguro";
             
-    $resultado=mysqli_query($db->conectar(),$sql);
-      while($registro=mysqli_fetch_array($resultado)){
+    $resultado=mysqli_query($db->conectar(),$sql);         /*pasa la query a la variable resultado*/
+      while($registro=mysqli_fetch_array($resultado)){     /*pasa a vector*/
  ?>  
 
 <div class="container">
@@ -121,7 +127,7 @@ if(isset($_POST['btn_limpiar']))
   </thead>
   <tbody>
     <tr>
-      <td><?php echo $registro['id']; ?></td>
+      <td><?php echo $registro['id']; ?></td>             <!--llama los resultados a la tabla-->
       <td><?php echo $registro['cedula']; ?></td>
       <td><?php echo $registro['nombre1']; ?></td>
       <td><?php echo $registro['nombre2']; ?></td>
@@ -130,15 +136,31 @@ if(isset($_POST['btn_limpiar']))
       <td><?php echo $registro['seguro']; ?></td>
       <td><?php echo $registro['segursocial']; ?></td>
     </tr>
-
 </table>
 
-</div> <!--Container-->
-<?php  
-        };
-      };
-    };   
+
+<?php 
+
+ $cedulaexiste++;       /*como si existió acumula el contador*/
+  }
+}
+    if ($cedulaexiste==0) {
+              echo '
+            <div class="container formulario">
+            <center>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Error!</strong> El empleado no existe.
+            </div>
+            </center>
+            </div>';
+            }
+};
+
 ?>
+
+</div> <!--Container-->
+
+
 
 <footer class="container">
   <p>© ADSI - 2019</p>
