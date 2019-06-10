@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Syspro - Acceso Empleados</title>
+    <title>Syspro - Modificaciones</title>
     <link href="../imagenes/icono.ico" rel="shortcut icon" >
 
 <!--Bootstrap (Trae Popper)-->
@@ -34,7 +34,7 @@
 
          <ul class="navbar-nav mr-auto">
 
-           <li class="nav-item active">
+          <li class="nav-item active">
            <a class="nav-link" href="../paginas/quienessomos.html">Quienes Somos <span class="sr-only"></span></a>
            </li>
 
@@ -50,20 +50,19 @@
            <a class="nav-link" href="../paginas/contacto.html">Contacto</a>
            </li>
          </ul>
-  </div>
-</nav>
-
-<div class="container formulario">
- <form method="POST" action="empleado.php" >
+  </nav>
+<div class="container">
+ <form class="especial" method="POST" action="modificacionesempleados.php" >
    
       <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
       <input type="text" name="cedula" class="form-control">
       </div>
       <input type="submit" value="Consultar" class="btn btn-primary" name="btn_consultar">
       <input type="submit" value="Limpiar" class="btn btn-primary" name="btn_limpiar">
+      <a href="empresarial.html" class="btn btn-info" role="button">Regresar</a>
    
 </form>
-</div>
+
 <br>
 
 <?php
@@ -105,7 +104,6 @@ else{
       while($registro=mysqli_fetch_array($resultado)){     /*pasa a vector*/
  ?>  
 
-<div class="container">
 <table class="table table-striped table-dark">
   <thead>
     <tr>
@@ -131,7 +129,8 @@ else{
       <td><?php echo $registro['segursocial']; ?></td>
     </tr>
 </table>
-
+<br>
+<input type="submit" value="Modificar" class="btn btn-primary" name="btn_modificar">
 
 <?php 
 
@@ -146,18 +145,28 @@ else{
             <strong>Error!</strong> El empleado no existe.
             </div>
             </center>
+            <input type="submit" value="Agregar Empleado" class="btn btn-primary" name="btn_modificar">
             </div>';
             }
+             if(isset($_POST['btn_modificar'])){
+              echo'
+              <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
+              <input type="text" name="cedula" class="form-control">
+              </div>';
+            }
 };
-
 ?>
 
+<?php 
+if(isset($_POST['btn_modificar'])){
+              echo'
+              <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
+              <input type="text" name="cedula" class="form-control">
+              </div>';}
+
+
+ ?>
+
 </div> <!--Container-->
-
-
-
-<footer class="container">
-  <p>© ADSI - 2019</p>
-</footer>
-</body>
-</html>
+  </div>
+</nav>

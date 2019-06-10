@@ -16,8 +16,12 @@ body  {
 .container.formulario {
     width: 100%;
     max-width: 420px;
-    padding: 15px;
+    
     margin: auto;
+}
+
+.container.posicion {
+    padding-bottom: 1rem;
 }
 
 .display-4 {
@@ -35,6 +39,12 @@ body  {
     display:block;
 }
 
+.especial {
+    width: 100%;
+    max-width: 420px;
+    margin-left:20px;
+    padding-top: 2.0rem;
+}
 
 /*Login*/
 
