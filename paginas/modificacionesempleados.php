@@ -54,28 +54,35 @@
 <div class="container">
  <form class="especial" method="POST" action="modificacionesempleados.php" >
    
-      <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
+      <div class="form-group" label for="cedula">Consultar Número de Documento</label>
       <input type="text" name="cedula" class="form-control">
       </div>
       <input type="submit" value="Consultar" class="btn btn-primary" name="btn_consultar">
       <input type="submit" value="Limpiar" class="btn btn-primary" name="btn_limpiar">
+      <input type="submit" value="Ingresar" class="btn btn-primary" name="btn_ingresar">
+      <input type="submit" value="Actualizar" class="btn btn-primary" name="btn_actualizar">
+      <input type="submit" value="Borrar" class="btn btn-primary" name="btn_borrar">
       <a href="empresarial.html" class="btn btn-info" role="button">Regresar</a>
-   
 </form>
-
 <br>
 
 <?php
-
 require_once 'conexion/conexion.php';
 
 $cedula="";             /* La variable inicia en blanco*/
 $cedulaexiste=0;        /*Contador por si no exite el documento*/
 
-
 if(isset($_POST['btn_limpiar']))
 {
   $cedula=""; /*Si se presiona El boton la variable se limpia*/
+  $cedula1 ="";
+  $nombre1 ="";
+  $nombre2 ="";
+  $apellido1 ="";
+  $apellido2 ="";
+  $seguro ="";
+  $segursocial ="";
+
    }
 
     if(isset($_POST['btn_consultar']))
@@ -93,16 +100,15 @@ if(isset($_POST['btn_limpiar']))
         </div>
         </center>
         </div>';
-        }
+        }     
+          else{
 
-else{
-
-    $sql="SELECT * FROM empleados, seguro 
-            WHERE cedula ='$cedula' AND cedula=cedulaseguro";
-            
-    $resultado=mysqli_query($db->conectar(),$sql);         /*pasa la query a la variable resultado*/
-      while($registro=mysqli_fetch_array($resultado)){     /*pasa a vector*/
- ?>  
+            $sql="SELECT * FROM empleados, seguro 
+                  WHERE cedula ='$cedula' AND cedula=cedulaseguro";
+                    
+            $resultado=mysqli_query($db->conectar(),$sql);         /*pasa la query a la variable resultado*/
+              while($registro=mysqli_fetch_array($resultado)){     /*pasa a vector*/
+         ?>  
 
 <table class="table table-striped table-dark">
   <thead>
@@ -130,43 +136,92 @@ else{
     </tr>
 </table>
 <br>
-<input type="submit" value="Modificar" class="btn btn-primary" name="btn_modificar">
-
 <?php 
-
  $cedulaexiste++;       /*como si existió acumula el contador*/
   }
 }
     if ($cedulaexiste==0) {
-              echo '
-            <div class="container formulario">
+           echo"
+            <div class='container formulario'>
             <center>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Error!</strong> El empleado no existe.
+            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <strong>Error!</strong> El empleado no existe. Presione Ingresar para Registrar.
             </div>
-            </center>
-            <input type="submit" value="Agregar Empleado" class="btn btn-primary" name="btn_modificar">
-            </div>';
-            }
-             if(isset($_POST['btn_modificar'])){
-              echo'
-              <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
-              <input type="text" name="cedula" class="form-control">
-              </div>';
-            }
-};
+            </center>";
+       }
+    };
 ?>
 
 <?php 
-if(isset($_POST['btn_modificar'])){
-              echo'
-              <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
-              <input type="text" name="cedula" class="form-control">
-              </div>';}
 
 
- ?>
+
+  if(isset($_POST['btn_ingresar'])){  
+              ?>
+              <div class="container">
+                  <form class="especial" method="POST" action="modificacionesempleados.php" >
+
+                  <div class="form-group" label for="cedula">Documento Nuevo Empleado</label> </div>
+                  <input type="text" name="cedula1" class="form-control">
+
+                  <div class="form-group" label for="cedula">Ingrese el Primer Nombre</label> </div>
+                  <input type="text" name="nombre1" class="form-control">
+
+                  <div class="form-group" label for="cedula">Ingrese el Segundo Nombre</label> </div>
+                  <input type="text" name="nombre2" class="form-control">
+
+                  <div class="form-group" label for="cedula">Ingrese el Primer Apellido</label> </div>
+                  <input type="text" name="apellido1" class="form-control">
+
+                  <div class="form-group" label for="cedula">Ingrese el Segundo Apellido</label> </div>
+                  <input type="text" name="apellido2" class="form-control">
+
+                  <div class="form-group" label for="cedula">Seguro: ACTIVO / NO ACTIVO</label> </div>
+                  <input type="text" name="seguro" class="form-control">
+
+                  <div class="form-group" label for="cedula">Seguridad Social: ACTIVO / NO ACTIVO</label> </div>
+                  <input type="text" name="segursocial" class="form-control">
+
+                  <input type="submit" value="Guardar" class="btn btn-primary" name="btn_guardar">
+             
+              </div>
+           <?php    
+           }
+           ?>
+<?php 
+
+if(isset($_POST['btn_guardar']))
+{
+  $cedula1 =$_POST["cedula1"];
+  $nombre1 =$_POST["nombre1"];
+  $nombre2 =$_POST["nombre2"];
+  $apellido1 =$_POST["apellido1"];
+  $apellido2 =$_POST["apellido2"];
+  $seguro =$_POST["seguro"];
+  $segursocial =$_POST["segursocial"];
+
+    if($cedula1=="" || $nombre1 =="" || $apellido1 =="" ||$seguro =="" ||$segursocial =="") 
+    {
+     echo "los campos son obligatorios";  IMPRIMIR MENSAJE BONITO
+    }
+    else {
+          $db = new db_conexion(); 
+        mysqli_query($db->conectar(),"INSERT INTO empleados
+        (cedula,nombre1,nombre2,apellido1,apellido2) 
+        values 
+        ('$cedula1','$nombre1','$nombre2','$apellido1','$apellido2')");
+
+        mysqli_query($db->conectar(),"INSERT INTO seguro
+        (cedulaseguro,seguro,segursocial) 
+        values 
+        ('$cedula1','$seguro','$segursocial')");  IMPRIMIR MENSAJE BONITO
+
+    }
+};
+?>
+
 
 </div> <!--Container-->
   </div>
 </nav>
+
