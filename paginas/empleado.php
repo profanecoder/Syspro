@@ -92,17 +92,15 @@ if(isset($_POST['btn_limpiar']))
         echo '
         <div class="container formulario">
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <strong>Error!      </strong>   El numero de Cedula es Obligatorio.
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-        </button>
+        <strong>Error!</strong> El numero de Cedula es Obligatorio.
         </div>
         </div>';
         }
-        
+
+    else{
     $sql="SELECT * FROM empleados, seguro 
-            WHERE cedula ='$cedula'
-              GROUP BY cedula";
+            WHERE cedula ='$cedula' AND cedula=cedulaseguro";
+            
     $resultado=mysqli_query($db->conectar(),$sql);
       while($registro=mysqli_fetch_array($resultado)){
  ?>  
@@ -137,10 +135,9 @@ if(isset($_POST['btn_limpiar']))
 
 </div> <!--Container-->
 <?php  
-        
+        };
       };
-    };
-     
+    };   
 ?>
 
 <footer class="container">

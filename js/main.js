@@ -1,5 +1,3 @@
-
-
 $(document).ready(function(){
   $('#tablaempresarial').dataTable({
     "bProcessing":true,
@@ -11,6 +9,8 @@ $(document).ready(function(){
         {mData:'nombre2'},
         {mData:'apellido1'},
         {mData:'apellido2'},
+        {mData:'seguro'},
+        {mData:'segursocial'},
       ]
     });
   });
