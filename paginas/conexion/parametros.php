@@ -5,5 +5,5 @@
 
   define('db_contrasena','');
 
-  define('db_base','prueba');
+  define('db_base','syspro');
 ?>

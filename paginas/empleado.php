@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html lang="es">
 <head>
@@ -39,7 +42,7 @@
            </li>
 
            <li class="nav-item active">
-           <a class="nav-link" href="../paginas/empleado.html">Empleados <span class="sr-only"></span></a>
+           <a class="nav-link" href="../paginas/empleado.php">Empleados <span class="sr-only"></span></a>
            </li>
 
            <li class="nav-item active">
@@ -53,29 +56,86 @@
 
      <!--Formulario Busqueda-->
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
     </form>
   </div>
 </nav>
 
-
 <div class="container">
-  <table id="empleados" class="table table-striped table-bordered" style="width:100%">
-    <thead class="thead-dark">
-      <tr>
-                    <th>ID</th>
-                    <th>Cédula</th>
-                    <th>Primer Nombre</th>
-                    <th>Segundo Nombre</th>
-                    <th>Primer Apellido</th>
-                    <th>Segundo Apellido</th>
-            </tr>
-        </thead>
-    </table>
+  
+ <form method="POST" action="empleado.php" >
+   
+      <div class="form-group" label for="cedula">Ingrese el Número de Documento</label>
+      <input type="text" name="cedula" class="form-control">
+      </div>
+      <input type="submit" value="Consultar" class="btn btn-primary" name="btn_consultar">
+      <input type="submit" value="Limpiar" class="btn btn-primary" name="btn_limpiar">
+   
+</form>
+<br>
 
-</div>
+<?php
 
+require_once 'conexion/conexion.php';
+
+$cedula="";
+
+if(isset($_POST['btn_limpiar']))
+{
+  $cedula="";
+   }
+
+    if(isset($_POST['btn_consultar']))
+      {
+    
+    $db = new db_conexion();
+    $cedula =$_POST["cedula"];
+    $sql="SELECT * FROM empleados, seguro 
+            WHERE cedula ='$cedula'
+              GROUP BY cedula";
+    $resultado=mysqli_query($db->conectar(),$sql);
+      while($registro=mysqli_fetch_array($resultado)){
+         
+ ?>   
+
+<table class="table table-striped table-dark">
+
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Cédula</th>
+      <th scope="col">Primer Nombre</th>
+      <th scope="col">Segundo Nombre</th>
+      <th scope="col">Primer Apellido</th>
+      <th scope="col">Segundo Apellido</th>
+      <th scope="col">Seguro</th>
+      <th scope="col">Seguridad Social</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><?php echo $registro['id']; ?></td>
+      <td><?php echo $registro['cedula']; ?></td>
+      <td><?php echo $registro['nombre1']; ?></td>
+      <td><?php echo $registro['nombre2']; ?></td>
+      <td><?php echo $registro['apellido1']; ?></td>
+      <td><?php echo $registro['apellido2']; ?></td>
+      <td><?php echo $registro['seguro']; ?></td>
+      <td><?php echo $registro['segursocial']; ?></td>
+    </tr>
+
+</table>
+
+</div> <!--Container-->
+<?php  
+      };
+    };
+?>
+
+<footer class="container">
+  <p>© ADSI - 2019</p>
+</footer>
 </body>
-
 </html>
