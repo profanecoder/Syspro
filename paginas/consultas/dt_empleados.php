@@ -3,7 +3,8 @@
     
     $db = new db_conexion();
 
-    $sql="select id, cedula, nombre1, nombre2, apellido1, apellido2 from empleados";
+    $sql="SELECT * FROM empleados, seguro
+              WHERE cedula=cedulaseguro";
     $resultado=mysqli_query($db->conectar(),$sql);
       while($registro=mysqli_fetch_array($resultado)){
          $data[] = $registro;
