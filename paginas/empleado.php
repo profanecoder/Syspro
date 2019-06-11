@@ -148,7 +148,7 @@ else{
             </center>
             </div>';
             }
-  $db->db_cerrar();
+   $db->db_cerrar();         
 };
 
 ?>

@@ -269,7 +269,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
  ;}
 ?>
 
-<?php    /*PROGRAMACIÓN BOTON INGRESAR*/
+<?php    /*PROGRAMACIÓN BOTON MODIFICAR*/
 
   if(isset($_POST['btn_modificar'])){    /*Presenta el formulario*/
               ?>
@@ -278,7 +278,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
                   <div class="row">
                     <div class="col">
                       <br>
-                      <p class="text"> Recuerde que los campos con * son <u>obligatorios</u>.</p>
+                      <p class="text"> Recuerde que esta modificación es <u>IRREVERSIBLE</u>.</p>
                       <div class="form-group" label for="cedula">Documento Empleado a modificar *:</label> </div>
                       <input type="text" name="cedula1" class="form-control">
                       <br>
@@ -304,7 +304,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
                       <div class="form-group" label for="cedula">Seguridad Social: ACTIVO / NO ACTIVO *:</label> </div>
                       <input type="text" name="segursocial" class="form-control">
                       <br>
-                      <input type="submit" value="Guardar" class="btn btn-success" name="btn_guardar2">
+                      <input type="submit" value="Guardar" class="btn btn-danger" name="btn_guardar2">
                     </div>
 
                     <div class="w-100"></div>
@@ -381,6 +381,88 @@ $resultado=mysqli_query($db->conectar(),$sql);
             <center>
             <div class='alert alert-success' role='alert'>
             <strong>Completado!</strong> Modificado con exito.
+            </div>
+            </center>";
+      }
+    }
+ ;}
+?>
+
+<?php    /*PROGRAMACIÓN BOTON BORRAR*/
+
+  if(isset($_POST['btn_borrar'])){    /*Presenta el formulario*/
+              ?>
+              <div class="container ingreso">
+              <form class="formulario modificaciones"method="POST" action="modificacionesempleados.php" >
+    
+                      <br>
+                      <p class="text"> Recuerde que esta eliminación es <u>IRREVERSIBLE</u>.</p>
+                      <div class="form-group" label for="cedula">Documento Empleado a Eliminar:</label> </div>
+                      <input type="text" name="cedula1" class="form-control"> 
+                      <br>
+                      <input type="submit" value="Eliminar" class="btn btn-danger" name="btn_guardar3">
+                    </div>
+                    <br>
+                    
+                  
+            </div>
+       <?php    
+        }
+        ?>
+
+<?php 
+
+if(isset($_POST['btn_guardar3']))
+{
+  $cedula1 =$_POST["cedula1"];      /*pide los datos por POST*/
+  
+if($cedula1=="") /*si está vacio*/
+    {
+      echo "<div class='container formulario'>
+            <center>
+            <div class='alert alert-danger' role='alert'>
+            <strong>Error!</strong> Los Campos con * son Obligatorios.
+            </div>
+            </center>";
+    }
+
+else
+{
+$existe=0;
+$db = new db_conexion();
+$sql="SELECT * FROM empleados
+      WHERE cedula ='$cedula1'";
+$resultado=mysqli_query($db->conectar(),$sql);
+  while($registro=mysqli_fetch_array($resultado))
+  {
+  $existe++;
+  $db->db_cerrar();
+  }
+
+   if($existe==0)             /*si la consulta existe, el acumulador acumula y si es 0 no existe*/
+        {
+        echo "<div class='container formulario'>
+          <center>
+          <div class='alert alert-danger' role='alert'>
+          <strong>Error!</strong> el empleado no existe.
+          </div>
+          </center>";
+        }
+     
+    else      /*si no, me hace el BORRAR */
+    {
+      $db = new db_conexion(); 
+      mysqli_query($db->conectar(),"DELETE FROM empleados
+                                    WHERE 
+                                    cedula='$cedula1'");
+      mysqli_query($db->conectar(),"DELETE FROM seguro
+                                    WHERE 
+                                    cedulaseguro='$cedula1'");         
+      $db->db_cerrar();
+      echo "<div class='container formulario'>
+            <center>
+            <div class='alert alert-success' role='alert'>
+            <strong>Completado!</strong> Eliminado con exito.
             </div>
             </center>";
       }

@@ -14,6 +14,7 @@ body  {
 }
 .container.ingreso {
   background: #353941;
+  Spadding-top: 2.0rem;
 }
 .container.formulario {
     width: 100%;
