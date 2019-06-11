@@ -17,8 +17,9 @@ body  {
 }
 .container.formulario {
     width: 100%;
-    max-width: 420px;
-    margin: auto;
+    max-width: 500px;
+    margin-left:150px;
+    padding-top: 2.0rem;
 }
 .container.posicion {
     padding-bottom: 1rem;
