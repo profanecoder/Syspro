@@ -82,8 +82,7 @@ if(isset($_POST['btn_limpiar']))    /*PROGRAMACIÓN BOTON LIMPIAR*/
   $apellido2 ="";
   $seguro ="";
   $segursocial ="";
-
-   }
+}
 
     if(isset($_POST['btn_consultar']))    /*PROGRAMACIÓN BOTON CONSULTAR*/
       {   
@@ -232,7 +231,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
   $existe++;
   }
 
-   if($existe <> 0)             /*si la consulta NO existe, imprime alerta*/
+   if($existe <> 0)             /*si la consulta existe, el acumulador acumula y si es diferente imprime alerta*/
         {
         echo "<div class='container formulario'>
           <center>
@@ -242,7 +241,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
           </center>";
         }
      
-    else      
+    else      /*si no, me hace el INSERT */
     {
         $db = new db_conexion(); 
       mysqli_query($db->conectar(),"INSERT INTO empleados
@@ -261,11 +260,8 @@ $resultado=mysqli_query($db->conectar(),$sql);
             </div>
             </center>";
       }
-  }
- }
-                   
-
-
+    }
+ ;}
 ?>
 </div> <!--Container-->
 
