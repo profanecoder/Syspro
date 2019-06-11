@@ -47,7 +47,7 @@
            </li>
 
            <li class="nav-item">
-           <a class="nav-link" href="../paginas/contacto.html">Contacto</a>
+           <a class="nav-link" href="../paginas/contacto.php">Contacto</a>
            </li>
          </ul>
   </nav>
@@ -107,6 +107,7 @@ if(isset($_POST['btn_limpiar']))    /*PROGRAMACIÓN BOTON LIMPIAR*/
                     
             $resultado=mysqli_query($db->conectar(),$sql);         /*pasa la query a la variable resultado*/
               while($registro=mysqli_fetch_array($resultado)){     /*pasa a vector*/
+              $db->db_cerrar();  
          ?>  
 
 <table class="table table-striped table-dark">
@@ -149,6 +150,7 @@ if(isset($_POST['btn_limpiar']))    /*PROGRAMACIÓN BOTON LIMPIAR*/
             </center>";
        }
     };
+
 ?>
 
 <?php    /*PROGRAMACIÓN BOTON INGRESAR*/
@@ -229,6 +231,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
   while($registro=mysqli_fetch_array($resultado))
   {
   $existe++;
+  $db->db_cerrar();
   }
 
    if($existe <> 0)             /*si la consulta existe, el acumulador acumula y si es diferente imprime alerta*/
@@ -254,6 +257,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
                                     (cedulaseguro,seguro,segursocial) 
                                     VALUES 
                                     ('$cedula1','$seguro','$segursocial')");  
+      $db->db_cerrar();
       echo "<div class='container formulario'>
             <center>
             <div class='alert alert-success' role='alert'>
@@ -343,6 +347,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
   while($registro=mysqli_fetch_array($resultado))
   {
   $existe++;
+  $db->db_cerrar();
   }
 
    if($existe==0)             /*si la consulta existe, el acumulador acumula y si es 0 no existe*/
@@ -371,7 +376,7 @@ $resultado=mysqli_query($db->conectar(),$sql);
                                     seguro='$seguro',
                                     segursocial='$segursocial'
                                     WHERE cedulaseguro ='$cedula1'");
-
+      $db->db_cerrar();
       echo "<div class='container formulario'>
             <center>
             <div class='alert alert-success' role='alert'>

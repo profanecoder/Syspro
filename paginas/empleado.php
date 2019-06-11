@@ -47,7 +47,7 @@
            </li>
 
            <li class="nav-item">
-           <a class="nav-link" href="../paginas/contacto.html">Contacto</a>
+           <a class="nav-link" href="../paginas/contacto.php">Contacto</a>
            </li>
          </ul>
   </div>
@@ -148,6 +148,7 @@ else{
             </center>
             </div>';
             }
+  $db->db_cerrar();
 };
 
 ?>
