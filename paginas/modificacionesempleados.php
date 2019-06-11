@@ -52,27 +52,27 @@
          </ul>
   </nav>
 <div class="container">
- <form class="especial" method="POST" action="modificacionesempleados.php" >
+ <form class="especial modificaciones" method="POST" action="modificacionesempleados.php" >
    
       <div class="form-group" label for="cedula">Consultar Número de Documento</label>
       <input type="text" name="cedula" class="form-control">
       </div>
       <input type="submit" value="Consultar" class="btn btn-primary" name="btn_consultar">
-      <input type="submit" value="Limpiar" class="btn btn-primary" name="btn_limpiar">
-      <input type="submit" value="Ingresar" class="btn btn-primary" name="btn_ingresar">
-      <input type="submit" value="Actualizar" class="btn btn-primary" name="btn_actualizar">
-      <input type="submit" value="Borrar" class="btn btn-primary" name="btn_borrar">
+      <input type="submit" value="Ingresar Empleado" class="btn btn-primary" name="btn_ingresar">
+      <input type="submit" value="Modificar Empleado" class="btn btn-primary" name="btn_modificar">
+      <input type="submit" value="Borrar Empleado" class="btn btn-primary" name="btn_borrar">
+      <input type="submit" value="Limpiar" class="btn btn-secondary" name="btn_limpiar">
       <a href="empresarial.html" class="btn btn-info" role="button">Regresar</a>
 </form>
 <br>
 
 <?php
-require_once 'conexion/conexion.php';
+require_once 'conexion/conexion.php';  /*LLama la conexión*/
 
 $cedula="";             /* La variable inicia en blanco*/
 $cedulaexiste=0;        /*Contador por si no exite el documento*/
 
-if(isset($_POST['btn_limpiar']))
+if(isset($_POST['btn_limpiar']))    /*PROGRAMACIÓN BOTON LIMPIAR*/
 {
   $cedula=""; /*Si se presiona El boton la variable se limpia*/
   $cedula1 ="";
@@ -85,7 +85,7 @@ if(isset($_POST['btn_limpiar']))
 
    }
 
-    if(isset($_POST['btn_consultar']))
+    if(isset($_POST['btn_consultar']))    /*PROGRAMACIÓN BOTON CONSULTAR*/
       {   
     $db = new db_conexion();     /*Abre la base de datos*/
     $cedula =$_POST["cedula"];   /*Pide la cedula por POST*/
@@ -95,7 +95,7 @@ if(isset($_POST['btn_limpiar']))
         echo '
         <div class="container formulario">
         <center>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger" role="alert">
         <strong>Error!</strong> El numero de Cedula es Obligatorio.
         </div>
         </center>
@@ -144,7 +144,7 @@ if(isset($_POST['btn_limpiar']))
            echo"
             <div class='container formulario'>
             <center>
-            <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+            <div class='alert alert-danger' role='alert'>
             <strong>Error!</strong> El empleado no existe. Presione Ingresar para Registrar.
             </div>
             </center>";
@@ -152,45 +152,123 @@ if(isset($_POST['btn_limpiar']))
     };
 ?>
 
-<?php 
+<?php    /*PROGRAMACIÓN BOTON INGRESAR*/
 
-
-
-  if(isset($_POST['btn_ingresar'])){  
+  if(isset($_POST['btn_ingresar'])){    /*Presenta el formulario*/
               ?>
-              <div class="container">
-                  <form class="especial" method="POST" action="modificacionesempleados.php" >
+              <div class="container ingreso">
+              <form class="formulario modificaciones"method="POST" action="modificacionesempleados.php" >
+                  <div class="row">
+                    <div class="col">
+                      <br>
+                      <p class="text"> Recuerde que los campos con * son <u>obligatorios</u>.</p>
+                      <div class="form-group" label for="cedula">Documento Nuevo Empleado *:</label> </div>
+                      <input type="text" name="cedula1" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Ingrese el Primer Nombre *:</label> </div>
+                      <input type="text" name="nombre1" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Ingrese el Segundo Nombre</label> </div>
+                      <input type="text" name="nombre2" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Ingrese el Primer Apellido *:</label> </div>
+                      <input type="text" name="apellido1" class="form-control">
+                      <br>
+                    </div>
+                    <div class="col">
+                       <br>
+                       <br>
+                      <div class="form-group" label for="cedula">Ingrese el Segundo Apellido</label> </div>
+                      <input type="text" name="apellido2" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Seguro: ACTIVO / INACTIVO *:</label> </div>
+                      <input type="text" name="seguro" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Seguridad Social: ACTIVO / NO ACTIVO *:</label> </div>
+                      <input type="text" name="segursocial" class="form-control">
+                      <br>
+                      <input type="submit" value="Guardar" class="btn btn-success" name="btn_guardar">
+                    </div>
 
-                  <div class="form-group" label for="cedula">Documento Nuevo Empleado</label> </div>
-                  <input type="text" name="cedula1" class="form-control">
+                    <div class="w-100"></div>
+                    
+                  </div>
+            </div>
+       <?php    
+        }
+        ?>
 
-                  <div class="form-group" label for="cedula">Ingrese el Primer Nombre</label> </div>
-                  <input type="text" name="nombre1" class="form-control">
-
-                  <div class="form-group" label for="cedula">Ingrese el Segundo Nombre</label> </div>
-                  <input type="text" name="nombre2" class="form-control">
-
-                  <div class="form-group" label for="cedula">Ingrese el Primer Apellido</label> </div>
-                  <input type="text" name="apellido1" class="form-control">
-
-                  <div class="form-group" label for="cedula">Ingrese el Segundo Apellido</label> </div>
-                  <input type="text" name="apellido2" class="form-control">
-
-                  <div class="form-group" label for="cedula">Seguro: ACTIVO / NO ACTIVO</label> </div>
-                  <input type="text" name="seguro" class="form-control">
-
-                  <div class="form-group" label for="cedula">Seguridad Social: ACTIVO / NO ACTIVO</label> </div>
-                  <input type="text" name="segursocial" class="form-control">
-
-                  <input type="submit" value="Guardar" class="btn btn-primary" name="btn_guardar">
-             
-              </div>
-           <?php    
-           }
-           ?>
 <?php 
+
+$cedula1 ="";
 
 if(isset($_POST['btn_guardar']))
+{
+  $cedula1 =$_POST["cedula1"];      /*pide los datos por POST*/
+  $nombre1 =$_POST["nombre1"];
+  $nombre2 =$_POST["nombre2"];
+  $apellido1 =$_POST["apellido1"];
+  $apellido2 =$_POST["apellido2"];
+  $seguro =$_POST["seguro"];
+  $segursocial =$_POST["segursocial"];
+
+    if($cedula1=="" || $nombre1 =="" || $apellido1 =="" || $seguro =="" ||$segursocial =="") /*si está vacio*/
+    {
+      echo "<div class='container formulario'>
+            <center>
+            <div class='alert alert-danger' role='alert'>
+            <strong>Error!</strong> Los Campos con * son Obligatorios.
+            </div>
+            </center>";
+    }
+
+    else
+    {
+          $cedulaexiste2=0;             /*si la consulta existe, hace un acumulador y pasa al else de captura*/
+          $db = new db_conexion();
+          $sql="SELECT * FROM empleados
+                WHERE cedula ='$cedula1'";
+          $resultado=mysqli_query($db->conectar(),$sql);       /*pasa la query a la variable resultado*/
+          {
+          $cedulaexiste2++;    
+          }
+   
+     if ($cedulaexiste2==0)             /*si la consulta NO existe, imprime alerta*/
+        {
+        echo "<div class='container formulario'>
+          <center>
+          <div class='alert alert-danger' role='alert'>
+          <strong>Error!</strong> el empleado ya está registrado
+          </div>
+          </center>";
+        }
+          
+    else
+    {
+      $db = new db_conexion(); 
+      mysqli_query($db->conectar(),"INSERT INTO empleados
+                                    (cedula,nombre1,nombre2,apellido1,apellido2) 
+                                    VALUES 
+                                    ('$cedula1','$nombre1','$nombre2','$apellido1','$apellido2')");
+
+      mysqli_query($db->conectar(),"INSERT INTO seguro
+                                    (cedulaseguro,seguro,segursocial) 
+                                    VALUES 
+                                    ('$cedula1','$seguro','$segursocial')");  
+      echo "<div class='container formulario'>
+            <center>
+            <div class='alert alert-success' role='alert'>
+            <strong>Completado!</strong> Ingreso Con exito.
+            </div>
+            </center>";
+    }
+  }                   
+};
+
+
+$cedula1 ="";
+
+if(isset($_POST['btn_guardar2']))
 {
   $cedula1 =$_POST["cedula1"];
   $nombre1 =$_POST["nombre1"];
@@ -200,28 +278,106 @@ if(isset($_POST['btn_guardar']))
   $seguro =$_POST["seguro"];
   $segursocial =$_POST["segursocial"];
 
-    if($cedula1=="" || $nombre1 =="" || $apellido1 =="" ||$seguro =="" ||$segursocial =="") 
+    if($cedula1=="" || $nombre1 =="" || $apellido1 =="" || $seguro =="" ||$segursocial =="") 
     {
-     echo "los campos son obligatorios";  IMPRIMIR MENSAJE BONITO
+      echo "<div class='container formulario'>
+            <center>
+            <div class='alert alert-danger' role='alert'>
+            <strong>Error!</strong> Los Campos con * son Obligatorios.
+            </div>
+            </center>";
     }
-    else {
-          $db = new db_conexion(); 
-        mysqli_query($db->conectar(),"INSERT INTO empleados
-        (cedula,nombre1,nombre2,apellido1,apellido2) 
-        values 
-        ('$cedula1','$nombre1','$nombre2','$apellido1','$apellido2')");
+    else
+    {
+          $cedulaexiste2=0;
+          $db = new db_conexion();
+          $sql="SELECT * FROM empleados
+                WHERE cedula ='$cedula1'";
+          $resultado=mysqli_query($db->conectar(),$sql);       /*pasa la query a la variable resultado*/
+          {
+          $cedulaexiste2++;    
+          }
+   
+     if ($cedulaexiste2==0) 
+        {
+        echo "<div class='container formulario'>
+          <center>
+          <div class='alert alert-danger' role='alert'>
+          <strong>Error!</strong> el empleado ya está registrado
+          </div>
+          </center>";
+        }
+          
+    else
+    {
+      $db = new db_conexion(); 
+      mysqli_query($db->conectar(),"INSERT INTO empleados
+                                    (cedula,nombre1,nombre2,apellido1,apellido2) 
+                                    VALUES 
+                                    ('$cedula1','$nombre1','$nombre2','$apellido1','$apellido2')");
 
-        mysqli_query($db->conectar(),"INSERT INTO seguro
-        (cedulaseguro,seguro,segursocial) 
-        values 
-        ('$cedula1','$seguro','$segursocial')");  IMPRIMIR MENSAJE BONITO
-
+      mysqli_query($db->conectar(),"INSERT INTO seguro
+                                    (cedulaseguro,seguro,segursocial) 
+                                    VALUES 
+                                    ('$cedula1','$seguro','$segursocial')");  
+      echo "<div class='container formulario'>
+            <center>
+            <div class='alert alert-success' role='alert'>
+            <strong>Completado!</strong> Ingreso Con exito.
+            </div>
+            </center>";
     }
+  }                   
 };
 ?>
 
+<?php 
+
+  if(isset($_POST['btn_modificar'])){  
+              ?>
+              <div class="container ingreso">
+              <form class="formulario modificaciones"method="POST" action="modificacionesempleados.php" >
+                  <div class="row">
+                    <div class="col">
+                      <br>
+                      <p class="text"> Recuerde que los campos con * son <u>obligatorios</u>.</p>
+                      <div class="form-group" label for="cedula">Documento Nuevo Empleado *:</label> </div>
+                      <input type="text" name="cedula1" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Ingrese el Primer Nombre *:</label> </div>
+                      <input type="text" name="nombre1" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Ingrese el Segundo Nombre</label> </div>
+                      <input type="text" name="nombre2" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Ingrese el Primer Apellido *:</label> </div>
+                      <input type="text" name="apellido1" class="form-control">
+                      <br>
+                    </div>
+                    <div class="col">
+                       <br>
+                       <br>
+                      <div class="form-group" label for="cedula">Ingrese el Segundo Apellido</label> </div>
+                      <input type="text" name="apellido2" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Seguro: ACTIVO / INACTIVO *:</label> </div>
+                      <input type="text" name="seguro" class="form-control">
+                      <br>
+                      <div class="form-group" label for="cedula">Seguridad Social: ACTIVO / NO ACTIVO *:</label> </div>
+                      <input type="text" name="segursocial" class="form-control">
+                      <br>
+                      <input type="submit" value="Guardar" class="btn btn-success" name="btn_guardar2">
+                    </div>
+
+                    <div class="w-100"></div>
+                    
+                  </div>
+            </div>
+       <?php    
+        }
+        ?>
+
 
 </div> <!--Container-->
-  </div>
-</nav>
 
+ 

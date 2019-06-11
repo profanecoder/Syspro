@@ -8,11 +8,11 @@
     <title>Syspro - Acceso Empleados</title>
     <link href="../imagenes/icono.ico" rel="shortcut icon" >
 
+<!--Jquery-->
+  <script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
 <!--Bootstrap (Trae Popper)-->
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
   <script src="../bootstrap/js/bootstrap.bundle.js"></script>
-<!--Jquery-->
-  <script src="../bootstrap/js/jquery-3.4.1.min.js"></script>
 <!--Datatables-->  
   <link rel="stylesheet" type="text/css" href="../datatables/datatables.css"/>
   <script type="text/javascript" src="../datatables/datatables.js"></script>
@@ -71,7 +71,7 @@
 require_once 'conexion/conexion.php';
 
 $cedula="";             /* La variable inicia en blanco*/
-$cedulaexiste=0;        /*Contador por si no exite el documento*/
+$cedulaexiste=0;        /*Contador por si no existe el documento*/
 
 
 if(isset($_POST['btn_limpiar']))
@@ -89,7 +89,7 @@ if(isset($_POST['btn_limpiar']))
         echo '
         <div class="container formulario">
         <center>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger" role="alert">
         <strong>Error!</strong> El numero de Cedula es Obligatorio.
         </div>
         </center>
@@ -142,7 +142,7 @@ else{
               echo '
             <div class="container formulario">
             <center>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <div class="alert alert-danger" role="alert">
             <strong>Error!</strong> El empleado no existe.
             </div>
             </center>

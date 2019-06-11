@@ -12,14 +12,14 @@ body  {
   padding-top: 2rem;
   padding-bottom: 1rem;
 }
-
+.container.ingreso {
+  background: #353941;
+}
 .container.formulario {
     width: 100%;
     max-width: 420px;
-    
     margin: auto;
 }
-
 .container.posicion {
     padding-bottom: 1rem;
 }
@@ -27,24 +27,32 @@ body  {
 .display-4 {
   	color: #ffffff
 }
-
 .text{
   	color:#ffffff;
 }
-
 .centrado {
 	  max-width: 100%;
     height: auto;
     margin: 0px auto;
     display:block;
 }
-
 .especial {
     width: 100%;
     max-width: 420px;
     margin-left:20px;
     padding-top: 2.0rem;
 }
+.especial.modificaciones {
+    width: 100%;
+    max-width: 780px;
+    margin-left:20px;
+    padding-top: 2.0rem;
+}
+.formulario.modificaciones{
+
+  color:#ffffff;
+}
+
 
 /*Login*/
 
