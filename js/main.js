@@ -3,7 +3,6 @@ $(document).ready(function(){
     "bProcessing":true,
     "sAjaxSource": "../paginas/consultas/consultaempresarial.php",
     "aoColumns": [
-        {mData:'id'},
         {mData:'cedula'},
         {mData:'nombre1'},
         {mData:'nombre2'},

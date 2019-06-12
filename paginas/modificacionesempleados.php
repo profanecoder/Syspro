@@ -113,7 +113,6 @@ if(isset($_POST['btn_limpiar']))    /*PROGRAMACIÓN BOTON LIMPIAR*/
 <table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Cédula</th>
       <th scope="col">Primer Nombre</th>
       <th scope="col">Segundo Nombre</th>
@@ -124,9 +123,8 @@ if(isset($_POST['btn_limpiar']))    /*PROGRAMACIÓN BOTON LIMPIAR*/
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><?php echo $registro['id']; ?></td>             <!--llama los resultados a la tabla-->
-      <td><?php echo $registro['cedula']; ?></td>
+    <tr>       
+      <td><?php echo $registro['cedula']; ?></td><!--llama los resultados a la tabla-->
       <td><?php echo $registro['nombre1']; ?></td>
       <td><?php echo $registro['nombre2']; ?></td>
       <td><?php echo $registro['apellido1']; ?></td>
