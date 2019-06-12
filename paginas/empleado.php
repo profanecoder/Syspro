@@ -109,7 +109,6 @@ else{
 <table class="table table-striped table-dark">
   <thead>
     <tr>
-      <th scope="col">ID</th>
       <th scope="col">Cédula</th>
       <th scope="col">Primer Nombre</th>
       <th scope="col">Segundo Nombre</th>
@@ -120,8 +119,7 @@ else{
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td><?php echo $registro['id']; ?></td>             <!--llama los resultados a la tabla-->
+    <tr>            <!--llama los resultados a la tabla-->
       <td><?php echo $registro['cedula']; ?></td>
       <td><?php echo $registro['nombre1']; ?></td>
       <td><?php echo $registro['nombre2']; ?></td>
